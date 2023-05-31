@@ -97,9 +97,12 @@ public class ScoreManager : MonoBehaviour {
         int sceneScore = CalculateScore();
 
         // Guardar la puntuación total de la escena en el playerPref restándole la puntuación anterior para actualizar adecuadamente el valor.
-        PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore", 0) - PlayerPrefs.GetInt($"Level_{sceneIndex}", 0) + sceneScore);
+        //PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore", 0) - PlayerPrefs.GetInt($"Level_{sceneIndex}", 0) + sceneScore);
 
-        DataBaseSQLManager.SaveScore(PlayerPrefs.GetInt("TotalScore", 0));
+        // Guardar la puntuación total de la escena en la base de datos restándole la puntuación anterior para actualizar adecuadamente el valor.
+        DataBaseSQLManager.SaveScore(DataBaseSQLManager.LoadScore() - PlayerPrefs.GetInt($"Level_{sceneIndex}", 0) + sceneScore);
+
+        //DataBaseSQLManager.SaveScore(PlayerPrefs.GetInt("TotalScore", 0));
 
         // Guardar la puntuación de la escena en el playerPref.
         int currentScore = CalculateScore();

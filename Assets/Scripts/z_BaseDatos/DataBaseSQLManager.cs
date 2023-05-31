@@ -90,7 +90,7 @@ public static class DataBaseSQLManager {
     [MenuItem("Tools/DataBases/Reset Data")]
     public static void ResetDatabase() {
         SaveScore(0);
-        PlayerPrefs.DeleteKey("TotalScore");
+        PlayerPrefs.DeleteAll();
     }
 #endif
 
